@@ -10,7 +10,6 @@ class Answer extends Model
     use HasFactory;
     public function Question()
     {
-        return $this->belongsTo(Question::class);
+        return $this->belongsToMany(Question::class, 'answers_questions', 'answers_id', 'questions_id');
     }
-
 }

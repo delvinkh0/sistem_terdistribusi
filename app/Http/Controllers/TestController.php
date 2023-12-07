@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Test;
 use App\Models\Question;
 use App\Models\History;
@@ -16,9 +17,8 @@ class TestController extends Controller
 
     public function submit(Request $request)
     {
-        $testId = $request->input('test_id');
-        $questions = Question::where('test_id', $testId)->get();
-        dd($questions);
+        $test_id = $request->input('test_id');
+        $questions = Question::where('test_id', $test_id)->with('answers')->get();
         return view('test.submit', compact('questions', 'test_id'));
     }
 
