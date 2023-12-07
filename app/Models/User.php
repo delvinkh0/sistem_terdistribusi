@@ -18,11 +18,18 @@ class User extends Authenticatable
      */
     protected $table = 'user';
     public $timestamps = false;
+
+
     protected $fillable = [
         'name',
         'email',
         'password',
     ];
+
+    public function testHistories()
+    {
+        return $this->hasMany(TestHistory::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.

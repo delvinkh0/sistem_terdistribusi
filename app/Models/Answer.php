@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Answer extends Model
 {
     use HasFactory;
-
+    public function Question()
+    {
+        return $this->belongsTo(Question::class);
+    }
 
 }
