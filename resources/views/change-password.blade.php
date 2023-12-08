@@ -1,6 +1,6 @@
 @extends('app')
 
-@section('content')
+@section('main')
     <h1>Change Password</h1>
 
     @if(session('success'))

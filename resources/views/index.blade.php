@@ -1,9 +1,9 @@
 @extends('app')
-@section('content')
+@section('main')
 <head>
     <title>{{$title}}</title>
 </head>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="top: 200px">
     <div class="container-fluid">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -36,5 +36,5 @@
 @Auth
 @endauth
 @guest
-@endguest    
-@endsection 
+@endguest
+@endsection

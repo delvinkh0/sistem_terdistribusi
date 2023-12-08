@@ -37,3 +37,28 @@ Route::get('history', [TestController::class, 'history'])->name('test.history');
 Route::get('logout', [UserController::class, 'logout'])->name('logout');
 
 Route:: post('test/store', [TestController::class, 'store'])->name('test.store');
+
+// Testing Route
+Route::get('beranda', function () {
+    return view('home');
+})->name('beranda');
+
+Route::get('self-assessment', function () {
+    return view('self-assessment');
+})->name('self-assessment');
+
+Route::get('detail-selfassessment', function () {
+    return view('detail-selfassessment');
+})->name('self-assessment.detail');
+
+Route::get('mindfulness', function () {
+    return view('mindfulness');
+})->name('mindfulness');
+
+Route::get('breathing-phase', function () {
+    return view('breathing-phase');
+})->name('breathing-phase');
+
+Route::get('profile', function () {
+    return view('profile');
+})->name('profile');
