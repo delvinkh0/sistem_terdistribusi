@@ -9,7 +9,8 @@ class StepQuestion extends Model
 {
     use HasFactory;
 
-    protected $table = 'stepquestion';
+    protected $table = 'StepQuestion';
+    public $timestamps = false;
 
     protected $fillable = [
         'stepQuestion',

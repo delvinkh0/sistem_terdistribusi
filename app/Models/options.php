@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Step extends Model
+class options extends Model
 {
     use HasFactory;
-    protected $table = 'step';
+    protected $table = 'options';
     public $timestamps = false;
-    protected $fillable = [
-        'stepName',
-        'stepDescription'
-    ];
+    public function question()
+    {
+        return $this->belongsTo(questions::class);
+    }
 }

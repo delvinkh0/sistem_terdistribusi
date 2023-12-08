@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Step extends Model
+class category extends Model
 {
     use HasFactory;
-    protected $table = 'step';
+    protected $table = 'category';
     public $timestamps = false;
-    protected $fillable = [
-        'stepName',
-        'stepDescription'
-    ];
+    public function test()
+    {
+        return $this->belongsToMany(test::class);
+    }
 }
