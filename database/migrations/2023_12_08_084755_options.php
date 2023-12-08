@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('breath_note', function (Blueprint $table) {
+        //
+        Schema::create('options', function (Blueprint $table) {
             $table->id();
-            $table->string('journalQuestion');
+            $table->string('optionName');
+            $table->integer('value');
         });
     }
 
@@ -22,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('breath_note');
+        //
     }
 };

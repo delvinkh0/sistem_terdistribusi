@@ -11,9 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('step', function (Blueprint $table) {
+        //
+        Schema::create('options_questions', function (Blueprint $table) {
             $table->id();
-            $table->string('stepName');
+            $table->unsignedBigInteger('questions_id');
+            $table->unsignedBigInteger('options_id');
+
+            $table->foreign('questions_id')->references('id')->on('questions');
+            $table->foreign('options_id')->references('id')->on('options');
         });
     }
 
@@ -23,6 +28,5 @@ return new class extends Migration
     public function down(): void
     {
         //
-        Schema::dropIfExists('step');
     }
 };

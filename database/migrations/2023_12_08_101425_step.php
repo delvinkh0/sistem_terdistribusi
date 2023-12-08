@@ -12,13 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         //
-        Schema::create('breathnote_answer', function (Blueprint $table) {
+        Schema::create('step', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('breathnote_id');
-            $table->unsignedBigInteger('breathanswer_id');
-
-            $table->foreign('breathnote_id')->references('id')->on('breath_note');;
-            $table->foreign('breathanswer_id')->references('id')->on('breath_answer');;
+            $table->string('stepName');
+            $table->string('stepDescription');
         });
     }
 
@@ -28,6 +25,5 @@ return new class extends Migration
     public function down(): void
     {
         //
-        Schema::dropIfExists('breathnote_answer');
     }
 };

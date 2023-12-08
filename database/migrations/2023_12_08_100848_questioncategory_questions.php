@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Termwind\Question;
 
 return new class extends Migration
 {
@@ -11,15 +12,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_answer', function (Blueprint $table) {
+        //
+        Schema::create('questioncategory_questions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('testhistory_id');
+            $table->unsignedBigInteger('questioncategory_id');
             $table->unsignedBigInteger('questions_id');
-            $table->unsignedBigInteger('answers_id');
 
-
-            $table->foreign('questions_id')->references('id')->on('questions');;
-            $table->foreign('answers_id')->references('id')->on('answers');;
+            $table->foreign('questioncategory_id')->references('id')->on('questioncategory');
+            $table->foreign('questions_id')->references('id')->on('questions');
         });
     }
 
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_answer');
+        //
     }
 };

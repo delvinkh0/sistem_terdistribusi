@@ -37,8 +37,8 @@ class TestController extends Controller
 
         // Simpan hasil ke dalam history
         History::create([
-            'id_user' => auth()->user()->id,
-            'id_test' => $testId,
+            'user_id' => auth()->user()->id,
+            'email' => $testId,
             'result' => (int) $result,
             'created_on' => now(),
         ]);
