@@ -12,6 +12,12 @@ class questions extends Model
     public $timestamps = false;
     public function options()
     {
-        return $this->hasMany(options::class);
+        return $this->belongsToMany(options::class, 'options_questions', 'questions_id', 'options_id');
     }
+    public function test()
+    {
+        return $this->belongsTo(Test::class);
+    }
+
+    
 }

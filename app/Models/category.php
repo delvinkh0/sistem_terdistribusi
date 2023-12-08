@@ -12,6 +12,6 @@ class category extends Model
     public $timestamps = false;
     public function test()
     {
-        return $this->belongsToMany(test::class);
+        return $this->belongsToMany(Category::class, 'test_category', 'category_id', 'test_id');
     }
 }

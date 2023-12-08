@@ -10,8 +10,9 @@ class options extends Model
     use HasFactory;
     protected $table = 'options';
     public $timestamps = false;
-    public function question()
+
+    public function questions()
     {
-        return $this->belongsTo(questions::class);
+        return $this->belongsToMany(questions::class, 'options_questions', 'options_id', 'questions_id');
     }
 }

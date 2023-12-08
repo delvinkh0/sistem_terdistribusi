@@ -19,11 +19,11 @@ class UserStepAnswer extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function stepQuestion()
     {
-        return $this->belongsTo(StepQuestion::class);
+        return $this->belongsTo(StepQuestion::class,'stepquestion_id');
     }
 }

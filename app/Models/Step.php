@@ -14,4 +14,8 @@ class Step extends Model
         'stepName',
         'stepDescription'
     ];
+    public function stepquestion()
+    {
+        return $this->belongsTo(StepQuestion::class, 'step_id');
+    }
 }

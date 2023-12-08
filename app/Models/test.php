@@ -11,6 +11,15 @@ class test extends Model
 
     public function category()
     {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsToMany(Category::class, 'test_category', 'test_id', 'category_id');
+    }
+    
+    public function questions()
+    {
+        return $this->hasMany(questions::class,);
+    }
+    public function testResults()
+    {
+        return $this->hasMany(TestResults::class, 'test_id');
     }
 }
