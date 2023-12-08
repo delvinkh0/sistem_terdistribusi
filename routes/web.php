@@ -62,3 +62,7 @@ Route::get('breathing-phase', function () {
 Route::get('profile', function () {
     return view('profile');
 })->name('profile');
+
+Route::get('result-selfassessment', function () {
+    return view('result-selfassessment');
+})->name('self-assessment.result');
