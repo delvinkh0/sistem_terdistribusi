@@ -77,7 +77,7 @@
                 </div>
 
                 <div class="end-session-button">
-                    <button class="end" type="button" onclick="endSessionModalToggleOn()">End This Session</button>
+                    <button class="end" type="button" onclick="endSessionModalToggleOn()">Akhiri Sesi Ini</button>
                 </div>
             </div>
 
