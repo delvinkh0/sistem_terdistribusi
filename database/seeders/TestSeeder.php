@@ -1,11 +1,10 @@
 <?php
 
 namespace Database\Seeders;
-
 use App\Models\Test;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-
 class TestSeeder extends Seeder
 {
     /**
@@ -47,7 +46,6 @@ class TestSeeder extends Seeder
                 'test_description' => 'Tes ini mengukur tingkat ketakutan dan kecemasan sosial dalam situasi sosial.',
             ],
         ];
-
-        Test::insert($data);
+        DB::table('test')->insert($data);
     }
 }

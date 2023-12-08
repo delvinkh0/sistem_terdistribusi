@@ -1,11 +1,10 @@
 <?php
 
 namespace Database\Seeders;
-
-use App\Models\Category;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Category;
 use Illuminate\Database\Seeder;
-
+use Illuminate\Support\Facades\DB;
 class CategorySeeder extends Seeder
 {
     /**
@@ -34,6 +33,6 @@ class CategorySeeder extends Seeder
             ],
         ];
 
-        Category::insert($data);
+        DB::table('category')->insert($data);
     }
 }
