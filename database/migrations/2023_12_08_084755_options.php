@@ -14,7 +14,7 @@ return new class extends Migration
         //
         Schema::create('options', function (Blueprint $table) {
             $table->id();
-            $table->string('optionName');
+            $table->string('option_name');
             $table->integer('value');
         });
     }
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('options');
     }
 };

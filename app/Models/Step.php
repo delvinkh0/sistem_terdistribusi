@@ -12,7 +12,8 @@ class Step extends Model
     public $timestamps = false;
     protected $fillable = [
         'stepName',
-        'stepDescription'
+        'stepDescription',
+        'step_id'
     ];
     public function stepquestion()
     {

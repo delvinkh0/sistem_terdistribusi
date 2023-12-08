@@ -8,25 +8,24 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-        */
-        public function up(): void
-        {
-            //
-            Schema::create('stepQuestion', function (Blueprint $table) {
-                $table->id();
-                $table->string('stepQuestion');
-                $table->unsignedBigInteger('step_id');
+     */
+    public function up(): void
+    {
+        //
+        Schema::create('step_question', function (Blueprint $table) {
+            $table->id();
+            $table->string('step_question');
+            $table->unsignedBigInteger('step_id');
 
-                $table->foreign('step_id')->references('id')->on('step');
-
-            });
-        }
+            $table->foreign('step_id')->references('id')->on('step');
+        });
+    }
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('step_question');
     }
 };

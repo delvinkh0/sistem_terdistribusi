@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('test_id');
-            $table->string('questionName');
+            $table->string('question_name');
 
             $table->foreign('test_id')->references('id')->on('test');
         });
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('questions');
     }
 };

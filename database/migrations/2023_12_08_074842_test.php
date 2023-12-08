@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('test', function (Blueprint $table) {
             $table->id();
-            $table->string('testName');
-            $table->string('testDescription');
+            $table->string('test_name');
+            $table->string('test_description');
         });
     }
 
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('test');
     }
 };

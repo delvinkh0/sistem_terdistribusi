@@ -14,8 +14,8 @@ return new class extends Migration
         //
         Schema::create('step', function (Blueprint $table) {
             $table->id();
-            $table->string('stepName');
-            $table->string('stepDescription');
+            $table->string('step_name');
+            $table->string('step_description');
         });
     }
 
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('step');
     }
 };

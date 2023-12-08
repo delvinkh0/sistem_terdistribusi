@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('questioncategory_id');
             $table->unsignedBigInteger('questions_id');
 
-            $table->foreign('questioncategory_id')->references('id')->on('questioncategory');
+            $table->foreign('questioncategory_id')->references('id')->on('question_category');
             $table->foreign('questions_id')->references('id')->on('questions');
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('questioncategory_questions');
     }
 };
