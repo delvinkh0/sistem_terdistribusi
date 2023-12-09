@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Traits\Timestamp;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,13 +12,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('test_results', function (Blueprint $table) {
+        //
+        Schema::create('userstepanswer', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('test_id');
-            $table->string('resultName');
-            $table->string('resultDescription');
-    
-            $table->foreign('test_id')->references('id')->on('Test');;
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('stepquestion_id');
+            $table->string('user_answer');
+            $table->timestamps();
         });
     }
 
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('test_results');
+        Schema::dropIfExists('userstepanswer');
     }
 };

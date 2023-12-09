@@ -5,9 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TestCategory extends Model
+class QuestionCategory extends Model
 {
     use HasFactory;
-    protected $table = 'test_category';
+    protected $table = 'questioncategory';
     public $timestamps = false;
+
+    protected $fillable = [
+        'questioncategory_name',
+    ];
 }

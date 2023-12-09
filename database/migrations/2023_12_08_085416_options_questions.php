@@ -8,18 +8,22 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+     * 
+     * 
      */
+
+     
+
     public function up(): void
     {
-        Schema::create('user_answer', function (Blueprint $table) {
+        //
+        Schema::create('options_questions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('testhistory_id');
             $table->unsignedBigInteger('questions_id');
-            $table->unsignedBigInteger('answers_id');
+            $table->unsignedBigInteger('options_id');
 
-
-            $table->foreign('questions_id')->references('id')->on('questions');;
-            $table->foreign('answers_id')->references('id')->on('answers');;
+            $table->foreign('questions_id')->references('id')->on('questions');
+            $table->foreign('options_id')->references('id')->on('options');
         });
     }
 
@@ -28,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_answer');
+        Schema::dropIfExists('options_questions');
     }
 };

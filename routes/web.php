@@ -36,7 +36,7 @@ Route::get('history', [TestController::class, 'history'])->name('test.history');
 
 Route::get('logout', [UserController::class, 'logout'])->name('logout');
 
-Route:: post('test/store', [TestController::class, 'store'])->name('test.store');
+Route:: post('test.store', [TestController::class, 'store'])->name('test.store');
 
 // Testing Route
 Route::get('beranda', function () {
@@ -66,3 +66,5 @@ Route::get('profile', function () {
 Route::get('result-selfassessment', function () {
     return view('result-selfassessment');
 })->name('self-assessment.result');
+
+
