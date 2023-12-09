@@ -31,8 +31,6 @@
       </div>
     </div>
   </nav>
-    <h1>welcome <b>{{Auth::user()->name}}</b></h1>
-    <h2>ini bagian home</h2>
 @Auth
 @endauth
 @guest

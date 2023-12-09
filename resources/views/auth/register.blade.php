@@ -54,7 +54,7 @@
 
 
                             <div class="submit-button">
-                                <button type="submit">Login</button>
+                                <button type="submit">Register</button>
                             </div>
 
                         </form>

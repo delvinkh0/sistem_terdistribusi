@@ -19,8 +19,8 @@
                             @csrf
                             <div class="field">
                                 <label for="name">Nama Lengkap</label>
-                                <input type="text" name="name" id="name"
-                                    placeholder="Masukkan nama lengkap anda" value="{{ old('name') }}">
+                                <input type="text" name="full_name" id="name"
+                                    placeholder="Masukkan nama lengkap anda" value="{{ old('full_name') }}">
                             </div>
 
                             <div class="field">
@@ -32,16 +32,15 @@
                                 <label for="password">Password</label>
                                 <input type="password" name="password" id="password" placeholder="Masukkan password anda">
                             </div>
-
+                            
                             <div class="field">
-                                <label for="repassword">Konfirmasi Password</label>
-                                <input type="password" name="repassword" id="repassword"
+                                <label for="password_confirmation">Konfirmasi Password</label>
+                                <input type="password" name="password_confirmation" id="password_confirmation"
                                     placeholder="Masukkan kembali password anda">
                             </div>
-
-
+                            
                             <div class="submit-button">
-                                <button type="submit">Login</button>
+                                <button type="submit">Register</button>
                             </div>
 
                         </form>

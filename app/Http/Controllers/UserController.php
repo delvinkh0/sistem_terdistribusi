@@ -15,20 +15,25 @@ class UserController extends Controller
     public function register(){
         $data['title']='register';
         return view('register',$data);
-    }
-    public function register_action(request $request){
+    }   
+
+    public function register_action(Request $request)
+    {
         $request->validate([
-                'name'=> 'required',
-                'email'=> 'required | unique:user',  
-                'password'=> 'required'
+            'full_name' => 'required',
+            'email' => 'required|unique:user',
+            'password' => 'required|min:6|confirmed',
         ]);
-        $user= new User([
-                'name'=> $request->name,
-                'email'=> $request->email,
-                'password'=> Hash::make($request->password),
+    
+        $user = new User([
+            'full_name' => $request->full_name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
         ]);
+    
         $user->save();
-        return redirect()->route('login')->with('success','Registration Success, please login');
+    
+        return redirect()->route('login')->with('success', 'Registration Success, please login');
     }
     public function login(){
         $data['title']='login';
@@ -47,7 +52,7 @@ class UserController extends Controller
     }
     public function index(){
         $title = "home"; // Definisikan variabel $title
-        return  view('index', compact('title')); // Kirim variabel $title ke view
+        return  view('home', compact('title')); // Kirim variabel $title ke view
     }
 
     public function changePassword(){

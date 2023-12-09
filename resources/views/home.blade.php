@@ -13,7 +13,7 @@
             <div class="title-and-desc">
                 @Auth
                 <div class="title" style="padding: 20px 0">
-                    <h2>Welcome {{Auth::user()->name}},</h2>
+                    <h2>Welcome {{Auth::user()->full_name}},</h2>
                 </div>
                 @endauth
                 <div class="title">
