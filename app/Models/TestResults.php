@@ -14,6 +14,7 @@ class TestResults extends Model
     protected $fillable = [
         'resultName',
         'resultDescription',
+        'result_solution',
         'test_id'
     ];
 

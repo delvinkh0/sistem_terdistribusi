@@ -12,7 +12,7 @@
                     <h2>Hasil Tes</h2>
                 </div>
                 <div class="desc">
-                    <p>Generalized Anxiety Disorder-7 (GAD-7)</p>
+                    <p>GAD</p>
                 </div>
             </div>
         </div>

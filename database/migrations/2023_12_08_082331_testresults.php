@@ -15,6 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('result_name');
             $table->string('result_description');
+            $table->string('result_solution');
+            $table->integer('first_limit');
+            $table->integer('end_limit');
             $table->unsignedBigInteger('test_id');
 
             $table->foreign('test_id')->references('id')->on('test');

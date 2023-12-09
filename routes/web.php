@@ -69,4 +69,5 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/test/show/{id}', [TestController::class, 'show'])->name('test.show');
     Route::post('/test/submit', [TestController::class, 'submit'])->name('test.submit');
+    Route::get('/test/result', [TestController::class, 'showResult'])->name('test.result');
 });

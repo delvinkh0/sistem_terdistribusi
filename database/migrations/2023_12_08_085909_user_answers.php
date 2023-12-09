@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('questions_id');
             $table->unsignedBigInteger('options_id');
-            $table->date('datenow')->nullable();
+            $table->dateTime('datenow')->nullable();
 
             $table->foreign('user_id')->references('id')->on('user');
             $table->foreign('questions_id')->references('id')->on('questions');

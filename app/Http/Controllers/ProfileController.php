@@ -56,7 +56,7 @@ class ProfileController extends Controller
 
         $user->save();
 
-        return redirect()->back()->with('success', 'profile updated');
+        return redirect()->back()->with('success', 'Profile telah diperbaharui');
     }
 
     // /**
@@ -78,13 +78,13 @@ class ProfileController extends Controller
         ]);
 
         if (!Hash::check($validated['current_password'], $user->password)) {
-            return redirect()->back()->with('error', 'wrong current password');
+            return redirect()->back()->with('error', 'Password lama salah');
         }
 
         $user->password = Hash::make($validated['new_password']);
 
         $user->save();
 
-        return redirect()->back()->with('success', 'password changed');
+        return redirect()->back()->with('success', 'Password telah diperbaharui');
     }
 }

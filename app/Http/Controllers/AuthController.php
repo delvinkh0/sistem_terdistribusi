@@ -61,15 +61,16 @@ class AuthController extends Controller
         ]);
 
         // Login user
-        auth()->login($user);
+        // auth()->login($user);
+        $user->save();
 
         // Redirect ke halaman home
-        return redirect()->route('home.index');
+        return redirect()->route('auth.index')->with('success', 'Registrasi akun berhasil, silahkan login');
     }
 
     public function logout()
     {
         auth()->logout();
-        return redirect()->route('auth.login');
+        return redirect()->route('auth.index')->with('success', 'Logout berhasil');
     }
 }

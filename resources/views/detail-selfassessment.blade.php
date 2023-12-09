@@ -12,11 +12,19 @@
                 <div class="title">
                     <h2>{{$test->test_name}}</h2>
                 </div>
-                @foreach ($test['category'] as $category)
                 <div class="categories">
-                    <small class="category anxiety">{{ $category['category_name'] }}</small>
-                </div>
-                @endforeach
+                    @foreach ($test['category'] as $cat)
+                        @if ($cat->category_name == 'Depresi')
+                            <small class="category depression">{{ $cat->category_name }}</small>
+                        @elseif ($cat->category_name == 'Kecemasan')
+                            <small class="category anxiety">{{ $cat->category_name }}</small>
+                        @elseif ($cat->category_name == 'Stress')
+                            <small class="category stress">{{ $cat->category_name }}</small>
+                        @else
+                            <small class="category anxiety">{{ $cat->category_name }}</small>
+                        @endif
+                    @endforeach
+                    </div>
 
                 <div class="desc">
                     <p>{{ $test->test_description }}</p>

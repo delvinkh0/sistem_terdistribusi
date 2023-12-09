@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Test;
+use App\Models\UserAnswers;
+use App\Models\Questions;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class TestController extends Controller
 {
@@ -46,9 +49,44 @@ class TestController extends Controller
         $questionsCount = count($request->input('questions', []));
         $answersCount = count($request->input('answers', []));
 
-        if ($questionsCount !== $answersCount) {
-            return redirect()->back()->with('error', 'Invalid input');
+        // dd($validated);
+
+        if ($answersCount == 0) {
+            return redirect()->back()->with('error', 'You need to answer the whole questions');
         }
+
+        if ($questionsCount !== $answersCount) {
+            return redirect()->back()->with('error', 'Please answer all the questions');
+        }
+
+        // dd($request->all());
+
+        // Custom logic to save the answers to database
+        foreach ($request->input('questions') as $key => $questionId) {
+
+            $answer = $request->input('answers')[$key-1];
+            $question = $request->input('questions')[$key];
+
+            $userAnswer = new UserAnswers([
+                'user_id' => auth()->user()->id,
+                'questions_id' => $question,
+                'options_id' => $answer,
+                'datenow' => Carbon::createFromFormat('Y-m-d H:i:s', now())
+
+            ]);
+            $userAnswer->save();
+        }
+
+        return redirect()->route('test.result')->with('success', 'Test submitted');
+    }
+
+    public function showResult()
+    {
+        //get the user answer table, test table, result table, sum the total
+        $data['test'] = UserAnswers::with(['questions', 'options'])->where('user_id', auth()->user()->id)->get();
+
+        dd($data['test']);
+        return view('result-selfassessment');
     }
 
     /**

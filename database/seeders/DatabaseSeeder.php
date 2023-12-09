@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             OptionsSeeder::class,
             OptionsQuestionsSeeder::class,
             TestCategorySeeder::class,
+            TestResultsSeeder::class,
         ]);
     }
 }

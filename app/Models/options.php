@@ -20,4 +20,9 @@ class Options extends Model
     {
         return $this->belongsToMany(questions::class, 'options_questions', 'options_id', 'questions_id');
     }
+
+    public function userAnswers()
+    {
+        return $this->hasMany(UserAnswers::class);
+    }
 }
