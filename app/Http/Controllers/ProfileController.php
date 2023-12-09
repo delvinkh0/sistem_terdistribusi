@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
@@ -86,5 +87,30 @@ class ProfileController extends Controller
         $user->save();
 
         return redirect()->back()->with('success', 'Password telah diperbaharui');
+    }
+
+    public function history()
+    {
+        $data['results'] = DB::table('result_view')
+            ->where('user_id', auth()->user()->id)
+            ->orderBy('datenow', 'desc')
+            ->get();
+
+        return view('history', $data);
+    }
+
+    public function historyDetail(Request $request)
+    {
+        $dateNow = $request->input('date_now');
+        if ($dateNow == null) {
+            return redirect()->back();
+        }
+        $data['result'] = DB::table('result_view')
+            ->where('user_id', auth()->user()->id)
+            ->where('datenow', $dateNow)
+            ->orderBy('datenow', 'desc')
+            ->first();
+
+        return view('history-detail', $data);
     }
 }

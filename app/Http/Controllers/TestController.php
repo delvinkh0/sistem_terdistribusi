@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Test;
-use App\Models\UserAnswers;
-use App\Models\Questions;
-use Illuminate\Http\Request;
 use Carbon\Carbon;
+use App\Models\Test;
+use App\Models\Questions;
+use App\Models\UserAnswers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TestController extends Controller
 {
@@ -49,8 +50,6 @@ class TestController extends Controller
         $questionsCount = count($request->input('questions', []));
         $answersCount = count($request->input('answers', []));
 
-        // dd($validated);
-
         if ($answersCount == 0) {
             return redirect()->back()->with('error', 'You need to answer the whole questions');
         }
@@ -64,7 +63,7 @@ class TestController extends Controller
         // Custom logic to save the answers to database
         foreach ($request->input('questions') as $key => $questionId) {
 
-            $answer = $request->input('answers')[$key-1];
+            $answer = $request->input('answers')[$key - 1];
             $question = $request->input('questions')[$key];
 
             $userAnswer = new UserAnswers([
@@ -83,10 +82,16 @@ class TestController extends Controller
     public function showResult()
     {
         //get the user answer table, test table, result table, sum the total
-        $data['test'] = UserAnswers::with(['questions', 'options'])->where('user_id', auth()->user()->id)->get();
+        if (session('success')) {
+            $data['result'] = DB::table('result_view')
+                ->where('user_id', auth()->user()->id)
+                ->orderBy('datenow', 'desc')
+                ->first();
 
-        dd($data['test']);
-        return view('result-selfassessment');
+            return view('result-selfassessment', $data);
+        } else {
+            return redirect()->back();
+        }
     }
 
     /**

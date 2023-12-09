@@ -12,7 +12,7 @@
                     <h2>Hasil Tes</h2>
                 </div>
                 <div class="desc">
-                    <p>GAD</p>
+                    <p>{{ $result->test_name }}</p>
                 </div>
             </div>
         </div>
@@ -36,7 +36,7 @@
     <section id="test-results" class="container">
         <div class="result-top">
             <div class="results-title-and-desc">
-                <h4>Mild Anxiety</h4>
+                <h4>{{$result->result_name}}</h4>
                 <p>Lorem ipsum dolor sit amet, ipsum dolor sit amet</p>
             </div>
             <div class="progress-bar">
@@ -48,38 +48,16 @@
                 <div id="value"></div>
             </div>
             <div class="result-score">
-                <p>Score: 9/21</p>
+                <p>Score: {{ $result->result }}/{{ $result->max_score }}</p>
             </div>
         </div>
 
         <div class="result-description">
-            <p>Your results are indicative of someone who likely handles your anger well in many situations, but
-                there are still times when your anger is handling you. Recognize the areas where you are doing well
-                in handling your anger, but also be cautious that your anger is not getting out of hand in other
-                ways.
-
-                <br><br>
-
-                Think about the situations where your anger comes out most often. Is it with loved ones? At work?
-                What happens when you react angrily? Are you a shouter, or do you turn your anger inward? What words
-                do you tend to use? What feelings tend to come out when you’re angry, and how do those feelings find
-                expression, in good ways or bad? Consider the following possibilities for future action:
-            </p>
+            <p>{{ $result->result_description }}</p>
 
             <div class="next-steps">
                 <h5>Next Steps</h5>
-                <p>Your results are indicative of someone who likely handles your anger well in many situations, but
-                    there are still times when your anger is handling you. Recognize the areas where you are doing well
-                    in handling your anger, but also be cautious that your anger is not getting out of hand in other
-                    ways.
-
-                    <br><br>
-
-                    Think about the situations where your anger comes out most often. Is it with loved ones? At work?
-                    What happens when you react angrily? Are you a shouter, or do you turn your anger inward? What words
-                    do you tend to use? What feelings tend to come out when you’re angry, and how do those feelings find
-                    expression, in good ways or bad? Consider the following possibilities for future action:
-                </p>
+                <p>{{ $result->result_solution }}</p>
             </div>
         </div>
 

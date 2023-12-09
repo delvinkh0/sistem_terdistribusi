@@ -20,6 +20,7 @@ class TestResultsSeeder extends Seeder
                 'result_solution' => 'Tetap menjaga pola hidup sehat, seperti olahraga teratur, tidur yang cukup, dan menjaga keseimbangan hidup secara umum. Fokus pada praktik self-care dapat membantu mencegah perkembangan kecemasan.',
                 'first_limit' => 0,
                 'end_limit' => 4,
+                'max_score' => 21,
                 'test_id' => 1
             ],
             [
@@ -28,6 +29,7 @@ class TestResultsSeeder extends Seeder
                 'result_solution' => 'Menggunakan teknik manajemen stres seperti meditasi, pernapasan dalam, atau aktivitas relaksasi. Berbicara dengan teman atau keluarga juga bisa memberikan dukungan emosional.',
                 'first_limit' => 5,
                 'end_limit' => 9,
+                'max_score' => 21,
                 'test_id' => 1
             ],
             [
@@ -36,6 +38,7 @@ class TestResultsSeeder extends Seeder
                 'result_solution' => 'Konsultasi dengan profesional kesehatan mental, seperti psikolog atau psikiater, untuk mendapatkan panduan lebih lanjut. Terapi kognitif perilaku (CBT) bisa menjadi pilihan yang efektif.',
                 'first_limit' => 10,
                 'end_limit' => 14,
+                'max_score' => 21,
                 'test_id' => 1
             ],
             [
@@ -44,6 +47,7 @@ class TestResultsSeeder extends Seeder
                 'result_solution' => 'Penting untuk mencari bantuan profesional secepat mungkin. Terapi intensif, mungkin termasuk kombinasi terapi dan obat-obatan, dapat direkomendasikan oleh profesional kesehatan mental. Dukungan sosial juga penting dalam proses pemulihan.',
                 'first_limit' => 15,
                 'end_limit' => 21,
+                'max_score' => 21,
                 'test_id' => 1
             ],
         ];

@@ -15,7 +15,10 @@ class TestResults extends Model
         'resultName',
         'resultDescription',
         'result_solution',
-        'test_id'
+        'test_id',
+        'first_limit',
+        'end_limit',
+        'max_score',
     ];
 
     public function test()

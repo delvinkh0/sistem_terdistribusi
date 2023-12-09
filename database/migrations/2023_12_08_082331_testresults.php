@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('result_solution');
             $table->integer('first_limit');
             $table->integer('end_limit');
+            $table->integer('max_score');
             $table->unsignedBigInteger('test_id');
 
             $table->foreign('test_id')->references('id')->on('test');
