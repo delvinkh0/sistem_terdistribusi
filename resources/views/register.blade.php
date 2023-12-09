@@ -15,7 +15,7 @@
                             @endforeach
                         @endif
                         <h1>Register</h1>
-                        <form method="POST" action="{{ route('register.action') }}">
+                        <form method="POST" action="{{ route('auth.register.action') }}">
                             @csrf
                             <div class="field">
                                 <label for="name">Nama Lengkap</label>
@@ -32,13 +32,13 @@
                                 <label for="password">Password</label>
                                 <input type="password" name="password" id="password" placeholder="Masukkan password anda">
                             </div>
-                            
+
                             <div class="field">
                                 <label for="password_confirmation">Konfirmasi Password</label>
                                 <input type="password" name="password_confirmation" id="password_confirmation"
                                     placeholder="Masukkan kembali password anda">
                             </div>
-                            
+
                             <div class="submit-button">
                                 <button type="submit">Register</button>
                             </div>
@@ -46,7 +46,7 @@
                         </form>
 
                         <div class="other-links">
-                            <p>Sudah memiliki akun? <a href="{{ route('login') }}">Login disini!</a></p>
+                            <p>Sudah memiliki akun? <a href="{{ route('auth.index') }}">Login disini!</a></p>
                         </div>
                     </div>
                 </div>

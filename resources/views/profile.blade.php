@@ -21,12 +21,12 @@
             <div class="profile-detail">
                 <div class="detail full-name-detail">
                     <h6 class="fullname-label the-label">Nama Lengkap</h6>
-                    <p class="fullname">Patricia Ho</p>
+                    <p class="fullname">{{ $user->full_name }}</p>
                 </div>
 
                 <div class="detail full-name-detail">
                     <h6 class="email-label the-label">Email</h6>
-                    <p class="email">hopatricia1711@gmail.com</p>
+                    <p class="email">{{ $user->email }}</p>
                 </div>
             </div>
         </div>
@@ -192,15 +192,17 @@
             <div class="title">
                 <h6>Edit Profil</h6>
             </div>
-            <form action="post">
+            <form action="{{ route('profile.update') }}" method="post">
+                @csrf
+                @method('PUT')
                 <div class="form-field">
                     <div class="field">
                         <label for="name">Nama Lengkap</label>
-                        <input type="text" name="name" id="name" placeholder="Masukkan nama lengkap anda">
+                        <input type="text" name="full_name" id="name" placeholder="Masukkan nama lengkap anda" value="{{ $user->full_name }}">
                     </div>
                     <div class="field">
                         <label for="name">Email</label>
-                        <input type="text" name="name" id="name" placeholder="Masukkan email anda">
+                        <input type="text" name="email" id="name" placeholder="Masukkan email anda" value="{{ $user->email }}">
                     </div>
                 </div>
 
@@ -216,7 +218,7 @@
             <div class="title">
                 <h6>Ganti Password</h6>
             </div>
-            <form action="{{ route('change.password.action') }}" method="post">
+            <form action="{{ route('profile.change-password.action') }}" method="post">
                 @csrf
                 <div class="form-field">
                     <div class="field">

@@ -10,16 +10,16 @@
         <div class="inner-hero">
             <div class="title-and-desc">
                 <div class="title">
-                    <h2>7-item Generalized Anxiety Disorder Scale (GAD-7)</h2>
+                    <h2>{{$test->test_name}}</h2>
                 </div>
+                @foreach ($test['category'] as $category)
                 <div class="categories">
-                    <small class="category anxiety">Kecemasan</small>
-                    <small class="category anxiety">Kecemasan</small>
-                    <small class="category anxiety">Kecemasan</small>
-
+                    <small class="category anxiety">{{ $category['category_name'] }}</small>
                 </div>
+                @endforeach
+
                 <div class="desc">
-                    <p>Tes ini mengukur tingkat kecemasan umum dengan 7 pertanyaan.</p>
+                    <p>{{ $test->test_description }}</p>
                 </div>
                 <div class="start-test-button">
                     <a href="#all-questions-and-instructions" class="start-test">Mulai Tes <i class="bi bi-arrow-right-short"></i></a>
@@ -44,73 +44,41 @@
     </section>
 
     <section id="all-questions-and-instructions" class="container">
+        @if ($errors->any())
+            @foreach ($errors->all() as $err)
+                <p class="alert alert-danger">{{ $err }}</p>
+            @endforeach
+        @endif
+        @if (session('error'))
+            <p class="alert alert-danger">{{ session('error') }}</p>
+        @endif
         <div class="instructions">
             <p class="title">Instruksi:</p>
             <p>Harap baca setiap pernyataan dan pilih dari "Tidak sama sekali" hingga "Hampir setiap hari" untuk
                 menunjukkan sejauh mana pernyataan tersebut berlaku untuk Anda selama dua minggu terakhir.</p>
         </div>
 
-        <form class="questions">
+        <form class="questions" action="{{ route('test.submit') }}" method="POST">
+            @csrf
             <div class="question-and-answer">
-                <div class="question-section">
-                    <div class="question">
-                        <p class="number">1.</p>
-                        <p class="question-name">Merasa cemas, gelisah, atau tegang</p>
+                @foreach ($test['questions'] as $outerIndex => $question)
+                    <div class="question-section">
+                        <div class="question">
+                            <p class="number">{{ $loop->iteration }}</p>
+                            <p class="question-name">{{ $question->question_name }}</p>
+                            <input type="hidden" name="questions[{{ $loop->iteration }}]" value="{{ $question->id }}">
+                        </div>
+
+                        <div class="radio-buttons">
+                            @foreach ($question['options'] as $option)
+                                <label class="radio-button">
+                                    <input type="radio" id="x{{ $option->id }}" name="answers[{{ $loop->parent->iteration - 1 }}]" value="{{ $option->id }}" />
+                                    <span class="radio-label">{{ $option->option_name }}</span>
+                                </label>
+                            @endforeach
+                        </div>
                     </div>
-
-                    <div class="radio-buttons">
-                        <label class="radio-button">
-                            <input type="radio" id="x1" name="answer-no-1" />
-                            <span class="radio-label">Tidak sama sekali</span>
-                        </label>
-
-                        <label class="radio-button">
-                            <input type="radio" id="x2" name="answer-no-1" />
-                            <span class="radio-label">Beberapa hari</span>
-                        </label>
-
-                        <label class="radio-button">
-                            <input type="radio" id="x3" name="answer-no-1" />
-                            <span class="radio-label">Lebih dari setengah hari</span>
-                        </label>
-
-                        <label class="radio-button">
-                            <input type="radio" id="x4" name="answer-no-1" />
-                            <span class="radio-label">Hampir setiap hari</span>
-                        </label>
-
-                    </div>
-                </div>
-
-                <div class="question-section">
-                    <div class="question">
-                        <p class="number">2.</p>
-                        <p class="question-name">Tidak bisa berhenti atau mengendalikan kekhawatiran</p>
-                    </div>
-
-                    <div class="radio-buttons">
-                        <label class="radio-button">
-                            <input type="radio" id="x1" name="answer-no-2" />
-                            <span class="radio-label">Tidak sama sekali</span>
-                        </label>
-
-                        <label class="radio-button">
-                            <input type="radio" id="x2" name="answer-no-2" />
-                            <span class="radio-label">Beberapa hari</span>
-                        </label>
-
-                        <label class="radio-button">
-                            <input type="radio" id="x3" name="answer-no-2" />
-                            <span class="radio-label">Lebih dari setengah hari</span>
-                        </label>
-
-                        <label class="radio-button">
-                            <input type="radio" id="x4" name="answer-no-2" />
-                            <span class="radio-label">Hampir setiap hari</span>
-                        </label>
-
-                    </div>
-                </div>
+                @endforeach
             </div>
 
             <button type="submit">Submit</button>

@@ -3,52 +3,75 @@
 namespace App\Http\Controllers;
 
 use App\Models\Test;
-use App\Models\Question;
-use App\Models\History;
 use Illuminate\Http\Request;
 
 class TestController extends Controller
 {
-    public function index()
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
     {
-        $tests = Test::all();
-        return view('test.index', compact('tests'));
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        $data['test'] = Test::with(['category', 'questions.options'])->find($id);
+
+        return view('detail-selfassessment', $data);
     }
 
     public function submit(Request $request)
     {
-        $test_id = $request->input('test_id');
-        $questions = Question::where('test_id', $test_id)->with('answers')->get();
-        return view('test.submit', compact('questions', 'test_id'));
-    }
-
-    public function store(Request $request)
-    {
-        // Validasi request sesuai kebutuhan
-
-        $testId = $request->input('test_id');
-        $totalPoints = count($request->input('answers'));
-
-        // Hitung total points dari jawaban
-        $points = array_sum($request->input('answers'));
-
-        // Hitung hasil
-        $result = ($points / $totalPoints) * 100;
-
-        // Simpan hasil ke dalam history
-        History::create([
-            'user_id' => auth()->user()->id,
-            'email' => $testId,
-            'result' => (int) $result,
-            'created_on' => now(),
+        $validated = $request->validate([
+            'questions.*' => 'required', // Validation rule for each element in the 'questions' array
+            'answers.*' => 'required',   // Validation rule for each element in the 'answers' array
+            'questions' => 'required|array|min:1', // Ensure 'questions' array exists and has at least one element
+            'answers' => 'required|array|min:1',   // Ensure 'answers' array exists and has at least one element
         ]);
 
-        return redirect()->route('test.history');
+        // Custom logic to compare questions and answers
+        $questionsCount = count($request->input('questions', []));
+        $answersCount = count($request->input('answers', []));
+
+        if ($questionsCount !== $answersCount) {
+            return redirect()->back()->with('error', 'Invalid input');
+        }
     }
 
-    public function history()
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Test $test)
     {
-        $history = History::where('id_user', auth()->user()->id)->get();
-        return view('test.history', compact('history'));
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Test $test)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Test $test)
+    {
+        //
     }
 }

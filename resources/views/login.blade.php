@@ -13,13 +13,16 @@
                         @if (session('success'))
                             <p class="alert alert-success">{{ session('success') }}</p>
                         @endif
+                        @if (session('error'))
+                            <p class="alert alert-danger">{{ session('error') }}</p>
+                        @endif
                         @if ($errors->any())
                             @foreach ($errors->all() as $err)
                                 <p class="alert alert-danger">{{ $err }}</p>
                             @endforeach
                         @endif
                         <h1>Login</h1>
-                        <form method="POST" action="{{ route('login.action') }}">
+                        <form method="POST" action="{{ route('auth.login.action') }}">
                             @csrf
                             <div class="field">
                                 <label for="email">Email</label>
@@ -43,8 +46,8 @@
                         </form>
 
                         <div class="other-links">
-                            <p>Belum memiliki akun? <a href="{{ route('register') }}">Daftar disini!</a></p>
-                            <p>Atau <a href="{{ route('beranda') }}">masuk sebagai tamu</a></p>
+                            <p>Belum memiliki akun? <a href="{{ route('auth.register') }}">Daftar disini!</a></p>
+                            <p>Atau <a href="{{ route('home.index') }}">masuk sebagai tamu</a></p>
                         </div>
 
                     </div>

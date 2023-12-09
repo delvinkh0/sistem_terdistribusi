@@ -40,7 +40,7 @@
         <p>Terdapat enam tahap dalam teknik pernafasan dengan pendekatan mindfulness yang beragam namun tetap mengutamakan setiap tahap selama lima menit.</p>
         <p>Fitur ini bisa diakses secara full dan disimpan kedalam histori saat sudah login atau memiliki akun</p>
         <div class="mindfulness-steps">
-            <a class="mindfulness-step" href="{{ route('breathing-phase') }}">
+            <a class="mindfulness-step" href="{{ route('home.breathing-phase') }}">
                 <h6>Kesadaran Tubuh</h6>
             </a>
             <a class="mindfulness-step locked" href="#">

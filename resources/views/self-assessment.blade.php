@@ -35,17 +35,20 @@
     </section>
 
     <section id="quizzes" class="container">
+        @foreach ($tests as $test)
         <div class="quiz">
             <div class="content">
-                <h6 class="title">7-item Generalized Anxiety Disorder scale (GAD-7)</h6>
-                <div class="categories">
-                    <small class="category anxiety">Kecemasan</small>
-                </div>
+                <h6 class="title">{{ $test->test_name }}</h6>
+                @foreach ($test['category'] as $cat)
+                    <div class="categories">
+                        <small class="category anxiety">{{ $cat->category_name }}</small>
+                    </div>
+                @endforeach
                 <div class="desc">
-                    <p>Tes ini mengukur tingkat kecemasan umum dengan 7 pertanyaan.</p>
+                    <p>{{ $test->test_description }}</p>
                 </div>
                 <div class="start-test-button">
-                    <a href="detail-selfassessment.html" class="start-test">Mulai Tes <i class="bi bi-arrow-right-short"></i></a>
+                    <a href="{{ route('test.show', $test->id) }}" class="start-test">Mulai Tes <i class="bi bi-arrow-right-short"></i></a>
                 </div>
             </div>
 
@@ -76,8 +79,10 @@
             </svg>
 
         </div>
+        @endforeach
 
-        <div class="quiz">
+
+        {{-- <div class="quiz">
             <div class="content">
                 <h6 class="title">9-item depression scale (PHQ-9)</h6>
                 <div class="categories">
@@ -383,7 +388,7 @@
                 </defs>
             </svg>
 
-        </div>
+        </div> --}}
 
     </section>
 </main>

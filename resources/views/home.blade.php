@@ -30,8 +30,8 @@
             </div>
 
             <div class="hero-button">
-                <a href="{{ route('self-assessment') }}" class="self-assessment">Self Assessment</a>
-                <a href="{{ route('mindfulness') }}" class="latihan-pernapasan">Latihan Pernapasan</a>
+                <a href="{{ route('home.self-assessment') }}" class="self-assessment">Self Assessment</a>
+                <a href="{{ route('home.technique') }}" class="latihan-pernapasan">Latihan Pernapasan</a>
             </div>
         </div>
 

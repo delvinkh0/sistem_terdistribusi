@@ -3,21 +3,21 @@
         <div class="navigation-bar">
             <div class="logo">
                 <a href="#">
-                    <img src="./assets/img/SerenayaLogo.png" alt="Serenaya Logo">
+                    <img src="{{ asset('assets/img/SerenayaLogo.png') }}" alt="Serenaya Logo">
                 </a>
             </div>
 
             <div class="navbar-links">
                 <ul>
-                    <li><a href="{{ route('beranda') }}">Beranda</a></li>
-                    <li><a href="{{ route('self-assessment') }}">Self Assessment</a></li>
-                    <li><a href="{{ route('mindfulness') }}">Mindfulness</a></li>
+                    <li><a href="{{ route('home.index') }}">Beranda</a></li>
+                    <li><a href="{{ route('home.self-assessment') }}">Self Assessment</a></li>
+                    <li><a href="{{ route('home.technique') }}">Mindfulness</a></li>
                 </ul>
             </div>
 
             <div class="login-register">
-                <a href="{{ route('login') }}" class="login">Login</a>
-                <a href="{{ route('register') }}" class="register">Get Started</a>
+                <a href="{{ route('auth.index') }}" class="login">Login</a>
+                <a href="{{ route('auth.register') }}" class="register">Get Started</a>
             </div>
 
 
