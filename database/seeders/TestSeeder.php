@@ -46,6 +46,6 @@ class TestSeeder extends Seeder
                 'test_description' => 'Tes ini mengukur tingkat ketakutan dan kecemasan sosial dalam situasi sosial.',
             ],
         ];
-        DB::table('test')->insert($data);
+        Test::insert($data);
     }
 }

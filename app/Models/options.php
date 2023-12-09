@@ -12,6 +12,10 @@ class Options extends Model
     protected $table = 'options';
     public $timestamps = false;
 
+    protected $fillable = [
+        'option_name',
+        'value'
+    ];
     public function questions()
     {
         return $this->belongsToMany(questions::class, 'options_questions', 'options_id', 'questions_id');

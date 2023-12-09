@@ -32,7 +32,6 @@ class CategorySeeder extends Seeder
                 'category_name' => 'Kecemasan Sosial',
             ],
         ];
-
-        DB::table('category')->insert($data);
+        Category::insert($data); 
     }
 }

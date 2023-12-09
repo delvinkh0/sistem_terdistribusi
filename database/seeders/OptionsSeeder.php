@@ -74,6 +74,6 @@ class OptionsSeeder extends Seeder
             [ 'option_name' => 'Tidak ada peluang', 'value' => 3 ],
             [ 'option_name' => 'Beberapa aspek', 'value' => 0 ],
         ];
-        DB::table('options')->insert($data);
+        Options::insert($data);
     }
 }

@@ -4,8 +4,9 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-class OptionsQuestions extends Seeder
+use App\Models\OptionsQuestions;
+
+class OptionsQuestionsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -173,7 +174,24 @@ class OptionsQuestions extends Seeder
             [ 'questions_id' => 40, 'options_id' => 47 ],
             [ 'questions_id' => 40, 'options_id' => 48 ],
             [ 'questions_id' => 40, 'options_id' => 49 ],
+            [ 'questions_id' => 40, 'options_id' => 50 ],
+            [ 'questions_id' => 41, 'options_id' => 51 ],
+            [ 'questions_id' => 41, 'options_id' => 52 ],
+            [ 'questions_id' => 41, 'options_id' => 53 ],
+            [ 'questions_id' => 41, 'options_id' => 54 ],
+            [ 'questions_id' => 42, 'options_id' => 55 ],
+            [ 'questions_id' => 42, 'options_id' => 56 ],
+            [ 'questions_id' => 42, 'options_id' => 57 ],
+            [ 'questions_id' => 42, 'options_id' => 58 ],
+            [ 'questions_id' => 43, 'options_id' => 59 ],
+            [ 'questions_id' => 43, 'options_id' => 60 ],
+            [ 'questions_id' => 43, 'options_id' => 61 ],
+            [ 'questions_id' => 43, 'options_id' => 62 ],
+            [ 'questions_id' => 44, 'options_id' => 63 ],
+            [ 'questions_id' => 44, 'options_id' => 64 ],
+            [ 'questions_id' => 44, 'options_id' => 65 ],
+            [ 'questions_id' => 44, 'options_id' => 66 ],
         ];
-        DB::table('options_questions')->insert($data);
+        OptionsQuestions::insert($data);
     }
 }
