@@ -46,7 +46,7 @@ use App\Http\Controllers\BreathSessionController;
 //Home route
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/self-assessment', [HomeController::class, 'selfAssessment'])->name('home.self-assessment');
-Route::get('/technique', [HomeController::class, 'technique'])->name('home.technique');
+// Route::get('/technique', [HomeController::class, 'technique'])->name('home.technique');
 
 // Auth route with middleware
 Route::group(['middleware' => 'guest'], function () {
@@ -54,6 +54,7 @@ Route::group(['middleware' => 'guest'], function () {
     Route::post('/login', [AuthController::class, 'loginAction'])->name('auth.login.action');
     Route::get('/register', [AuthController::class, 'register'])->name('auth.register');
     Route::post('/register', [AuthController::class, 'registerAction'])->name('auth.register.action');
+    Route::get('/technique-guest', [HomeController::class, 'techniqueGuest'])->name('home.techniqueguest');
 });
 
 // with auth middleware
@@ -73,6 +74,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/test/result', [TestController::class, 'showResult'])->name('test.result');
 
     Route::get('/breathing-phase/{id}', [BreathSessionController::class, 'index'])->name('breathsession.index');
+    Route::get('/technique', [HomeController::class, 'technique'])->name('home.technique');
 
     Route::group(['middleware' => 'streak.breath.session.taken'], function () {
         Route::post('/breathing-phase/submit', [BreathSessionController::class, 'submit'])->name('breathsession.submit');

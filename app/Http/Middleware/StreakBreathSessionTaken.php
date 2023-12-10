@@ -60,7 +60,7 @@ class StreakBreathSessionTaken
             }
         }
 
-        dd("success");
+        // dd("success");
         return $next($request);
     }
 }

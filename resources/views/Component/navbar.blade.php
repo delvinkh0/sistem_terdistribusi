@@ -11,7 +11,7 @@
                 <ul>
                     <li><a href="{{ route('home.index') }}">Beranda</a></li>
                     <li><a href="{{ route('home.self-assessment') }}">Self Assessment</a></li>
-                    <li><a href="{{ route('home.technique') }}">Mindfulness</a></li>
+                    <li><a href="{{ route('home.techniqueguest') }}">Mindfulness</a></li>
                 </ul>
             </div>
 

@@ -52,16 +52,17 @@
 
             <div class="mindfulness-steps">
                 @Auth
-                    @foreach ($steps as $step)
-                        @if ($step->id == 1)
-                            <a class="mindfulness-step" href="{{ route('breathsession.index', $step->id) }}">
-                                <h6>{{ $step->step_name }}</h6>
-                            </a>
-                        @else
-                            <div class="mindfulness-step locked" href="{{ route('breathsession.index', $step->id) }}">
-                                <h6>{{ $step->step_name }}</h6>
-                            </div>
-                        @endif
+                    @foreach ($enabledSteps as $step)
+                    {{-- {{ dd($step['id'])}} --}}
+                    <a class="mindfulness-step" href="{{ route('breathsession.index', $step['id']) }}">
+                        <h6>{{ $step['step_name'] }}</h6>
+
+                    </a>
+                    @endforeach
+                    @foreach ($disabledSteps as $step)
+                    <div class="mindfulness-step locked" href="{{ route('breathsession.index', $step['id']) }}">
+                        <h6>{{ $step['step_name'] }}</h6>
+                    </div>
                     @endforeach
                 @else
                     @foreach ($steps as $step)
@@ -88,6 +89,8 @@
                 <h6>Kamu hebat!</h6>
                 <p>
                     Hari ini sudah cukup, jangan lupa untuk melakukan sesi ini besok!
+                    <br>
+                    Jika ada sesi yang terbuka setelahnya, silahkan dilakukan sesi tersebut supay lebih banyak sesi yang dapat terbuka!
                 </p>
             </div>
             <form action="post">
