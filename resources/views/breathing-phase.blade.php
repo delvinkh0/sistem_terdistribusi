@@ -134,7 +134,7 @@
             <form action="{{ route('breathsession.submit') }}" method="post" onsubmit="return validateForm()">
                 @csrf
                 <div class="form-field">
-                    <input type="hidden" id="name"  value="{{ $step->step_id }}" name="step_id" required>
+                    <input type="hidden" id="name"  value="{{ $step->id }}" name="step_id" required>
                     @foreach ($step['stepquestion'] as $step1)
                         <div class="field">
                             <label for="name" class="ask-user">{{ $step1->step_question }}</label>

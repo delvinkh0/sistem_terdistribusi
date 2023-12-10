@@ -18,18 +18,49 @@ class StreakBreathSessionTaken
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // $user = Auth::user()
-        //     ->where('id', auth()->user()->id)
-        //     ->first();
+        $stepId = $request->input('step_id');
 
-        // $sevenDaysStreak = StepTestTaken::with('user', 'step')
-        //     ->where('user_id', auth()->user()->id)
-        //     // ->where('datenow', '>=', Carbon::now()->subDays(1))
-        //     ->orderBy('datenow', 'desc')
-        //     ->get();
+        if ($stepId == 1) {
+            return $next($request);
+        }
 
-        // dd($sevenDaysStreak);
+        $sevenDaysStreak = StepTestTaken::with('user', 'step')
+            ->where('user_id', auth()->user()->id)
+            ->where('step_id', $stepId)
+            // ->where('datenow', '>=', Carbon::now()->subDays(1))
+            ->orderBy('datenow', 'desc')
+            ->get();
 
+        // check for 7 days streak taking the test
+        if ($sevenDaysStreak->count() < 7) {
+            return redirect()->route('home.technique')->with('error', 'Anda belum bisa mengakses halaman ini, silahkan lakukan sesi pernapasan terlebih dahulu!');
+        }
+
+        // get the steptesttaken that the last one
+        $lastStepTestTaken = StepTestTaken::with('user', 'step')
+            ->where('user_id', auth()->user()->id)
+            ->where('step_id', $stepId)
+            ->orderBy('datenow', 'desc')
+            ->first();
+
+        // loop from the last date to 6 days before exclude the last date
+        for ($i = 1; $i < 7; $i++) {
+            $date = Carbon::createFromFormat('Y-m-d H:i:s', $lastStepTestTaken->datenow)->subDays($i);
+            printf("$date in  $i days\n");
+            $date = $date->format('Y-m-d');
+
+            $checkStreak = StepTestTaken::with('user', 'step')
+                ->where('user_id', auth()->user()->id)
+                ->where('step_id', $stepId)
+                ->whereDate('datenow', $date)
+                ->first();
+
+            if (!$checkStreak) {
+                return redirect()->route('home.technique')->with('error', 'Anda belum bisa mengakses halaman ini, silahkan lakukan sesi pernapasan terlebih dahulu!');
+            }
+        }
+
+        dd("success");
         return $next($request);
     }
 }

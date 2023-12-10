@@ -14,10 +14,12 @@ return new class extends Migration
         Schema::create('steptesttaken', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('test_id');
+            $table->unsignedBigInteger('step_id');
             $table->dateTime('datenow')->nullable();
-        });
 
+            $table->foreign('user_id')->references('id')->on('user');
+            $table->foreign('step_id')->references('id')->on('step');
+        });
     }
 
     /**

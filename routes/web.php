@@ -72,11 +72,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/test/submit', [TestController::class, 'submit'])->name('test.submit');
     Route::get('/test/result', [TestController::class, 'showResult'])->name('test.result');
 
-    // Route::group(['middleware' => 'streak.breath.session.taken'], function () {
-    //     Route::get('/breathing-phase/{id}', [BreathSessionController::class, 'index'])->name('breathsession.index');
-    //     Route::post('/breathing-phase/submit', [BreathSessionController::class, 'submit'])->name('breathsession.submit');
-    // });
-
     Route::get('/breathing-phase/{id}', [BreathSessionController::class, 'index'])->name('breathsession.index');
-    Route::post('/breathing-phase/submit', [BreathSessionController::class, 'submit'])->name('breathsession.submit');
+
+    Route::group(['middleware' => 'streak.breath.session.taken'], function () {
+        Route::post('/breathing-phase/submit', [BreathSessionController::class, 'submit'])->name('breathsession.submit');
+    });
+
+    // Route::get('/breathing-phase/{id}', [BreathSessionController::class, 'index'])->name('breathsession.index');
+    // Route::post('/breathing-phase/submit', [BreathSessionController::class, 'submit'])->name('breathsession.submit');
 });

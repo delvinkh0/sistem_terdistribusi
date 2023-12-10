@@ -14,7 +14,6 @@ class BreathSessionController extends Controller
     public function index(string $id)
     {
         $data['step'] = Step::with('stepquestion')->find($id);
-        // dd($data['step']);
 
         return view('breathing-phase', $data);
     }
@@ -29,11 +28,6 @@ class BreathSessionController extends Controller
             'step_id' => 'required'
         ]);
 
-        $stepQuestionsCount = count($request->input('stepquestion', []));
-        $userAnswerCount = count($request->input('userAnswer', []));
-
-        // dd($request->all());
-
         foreach ($request->input('stepquestion') as $key => $value) {
             $answer = $request->input('userAnswer')[$key - 1];
             $question = $request->input('stepquestion')[$key];
@@ -42,8 +36,8 @@ class BreathSessionController extends Controller
                 'user_id' => auth()->user()->id,
                 'stepquestion_id' => $question,
                 'user_answer' => $answer,
-                'created_at' =>  Carbon::createFromFormat('Y-m-d H:i:s', now()),
-                'updated_at' =>  Carbon::createFromFormat('Y-m-d H:i:s', now())
+                'created_at' =>  now(),
+                'updated_at' =>  now()
             ]);
 
             $userStepAnswer->save();
@@ -52,10 +46,8 @@ class BreathSessionController extends Controller
         $stepTestTaken = StepTestTaken::create([
             'user_id' => auth()->user()->id,
             'step_id' => $request->input('step_id'),
-            'datenow' => Carbon::createFromFormat('Y-m-d H:i:s', now())
+            'datenow' => now(),
         ]);
-
-        dd($stepTestTaken);
 
         $stepTestTaken->save();
 
