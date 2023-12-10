@@ -13,7 +13,7 @@ class UserStepAnswer extends Model
     protected $fillable = [
         'user_id',
         'stepquestion_id',
-        'userAnswer',
+        'user_answer',
         'createdOn'
     ];
 

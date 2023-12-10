@@ -7,9 +7,6 @@
             <div id="stars3"></div>
         </section>
 
-        <section id="breathing-progress">
-
-        </section>
 
         <section id="profile" class="container">
             @if (session('success'))
@@ -23,6 +20,7 @@
                     <p class="alert alert-danger">{{ $err }}</p>
                 @endforeach
             @endif
+
             <div class="part profile-part">
                 <div class="title-and-button">
                     <h2 class="title">Profil</h2>
@@ -54,6 +52,42 @@
                         <h6 class="password-label the-label">Password</h6>
                         <p class="password">*********</p>
                     </div>
+                </div>
+            </div>
+
+            <div class="part breathing-progress history-part">
+                <div class="title-and-button">
+                    <h2 class="title">Riwayat Sesi Pernafasan</h2>
+                </div>
+                <div class="history-tests">
+                    @foreach ($groupedSessions as $stepId => $sessionsGroupedByDate)
+                        @foreach ($sessionsGroupedByDate as $dateTime => $sessions)
+                        @php
+                            $displayedSteps = [];
+                        @endphp
+                        <div class="history-test">
+                            <div class="date-and-title">
+                                <p class="date">{{ $dateTime }}</p>
+
+                                @foreach ($sessions as $session)
+                                    @php
+                                        $currentStepId = $session->stepQuestion->step->id;
+                                    @endphp
+                                    @if (!in_array($currentStepId, $displayedSteps))
+                                        <p class="test-title">Sesi {{ $session->stepQuestion->step->id }} : {{ $session->stepQuestion->step->step_name }} </p>
+
+                                        @php
+                                            $displayedSteps[] = $currentStepId;
+                                        @endphp
+                                    @endif
+
+                                    <p>{{ $session->user_answer }}</p>
+                                @endforeach
+                            </div>
+                        </div>
+                        @endforeach
+                    @endforeach
+
                 </div>
             </div>
 

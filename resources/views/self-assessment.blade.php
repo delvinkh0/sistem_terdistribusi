@@ -60,12 +60,18 @@
                     <p>{{ $test->test_description }}</p>
                 </div>
                 @if (!$isUnderDevelopment)
-                    <div class="start-test-button">
-                        <a href="{{ route('test.show', $test->id) }}" class="start-test">Mulai Tes <i class="bi bi-arrow-right-short"></i></a>
-                    </div>
+                    @Auth
+                        <div class="start-test-button">
+                            <a href="{{ route('test.show', $test->id) }}" class="start-test">Mulai Tes <i class="bi bi-arrow-right-short"></i></a>
+                        </div>
+                    @else
+                        <p class="alert alert-info" style="padding: 5px; font-size: 0.7rem; text-align: center">Tes hanya bisa dilakukan ketika sudah login</p>
+                    @endauth
+
                 @else
                     <p class="alert alert-danger" style="padding: 5px; font-size: 0.7rem; text-align: center">Tes dalam tahap pengembangan</p>
                 @endif
+
             </div>
 
             <svg width="370" height="138" viewBox="0 0 370 138" fill="none" xmlns="http://www.w3.org/2000/svg">

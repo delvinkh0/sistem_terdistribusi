@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Step;
 use App\Models\Test;
 use Illuminate\Http\Request;
 
@@ -20,7 +21,8 @@ class HomeController extends Controller
 
     public function technique()
     {
-        return view('mindfulness');
+        $data['steps'] = Step::with('stepquestion')->get();
+        return view('mindfulness', $data);
     }
 
     public function breathingPhase()

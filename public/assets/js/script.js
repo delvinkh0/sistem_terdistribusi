@@ -27,11 +27,11 @@ function changeIcon() {
     if(hamburgerDisplay !== "none"){
         hamburger.style.display = "none";
         close.style.display = "block";
-        navbar.classList.add("open");    
+        navbar.classList.add("open");
     } else {
         hamburger.style.display = "block";
         close.style.display = "none";
-        navbar.classList.remove("open");    
+        navbar.classList.remove("open");
     }
 }
 
@@ -61,6 +61,20 @@ function editPasswordModalToggleOn() {
 function editPasswordModalToggleOff() {
     const modalScreen = document.querySelector("#modal-screen");
     const editModal = document.querySelector("#modal-screen .the-modal.change-password-modal");
+    modalScreen.style.display = "none";
+    editModal.style.display = "none";
+}
+
+function veryEndOfSessionModalToggleOn() {
+    const modalScreen = document.querySelector("#modal-screen");
+    const editModal = document.querySelector("#modal-screen .the-modal.the-very-end-of-session-modal");
+    modalScreen.style.display = "flex";
+    editModal.style.display = "flex";
+}
+
+function veryEndOfSessionModalToggleOff() {
+    const modalScreen = document.querySelector("#modal-screen");
+    const editModal = document.querySelector("#modal-screen .the-modal.the-very-end-of-session-modal");
     modalScreen.style.display = "none";
     editModal.style.display = "none";
 }

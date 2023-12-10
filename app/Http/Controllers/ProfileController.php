@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\UserStepAnswer;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
@@ -14,10 +15,26 @@ class ProfileController extends Controller
     public function index()
     {
         $data['user'] = auth()->user();
+
         $data['results'] = DB::table('result_view')
             ->where('user_id', auth()->user()->id)
             ->orderBy('datenow', 'desc')
             ->get();
+
+        $breathSessions = UserStepAnswer::with('user', 'stepQuestion', 'stepQuestion.step')
+            ->where('user_id', $data['user']->id)
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        // Group the results by 'step' and 'created_on'
+        $data['groupedSessions'] = $breathSessions->groupBy([
+            'step.id',
+            function ($item) {
+                return $item->created_at->format('Y-m-d H:i:s'); // Adjust this based on your date format
+            },
+        ]);
+
+        // dd($data['groupedSessions']);
 
         return view('profile', $data);
     }

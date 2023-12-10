@@ -1315,6 +1315,33 @@ main.background-auth .auth-form .other-links {
     text-decoration: none;
 }
 
+#profile-page #profile .part .history-tests .history-test{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background-10);
+    box-shadow: 0px 4px 4px 0px var(--tertiary-base);
+    border-radius: 20px;
+    width: 100%;
+    max-width: 330px;
+    min-height: 180px;
+    text-decoration: none;
+}
+
+#profile-page #profile .part .history-tests .history-test .date-and-title {
+    padding: 20px 20px 0px 30px;
+    color: var(--primary-base);
+}
+
+#profile-page #profile .part .history-tests .history-test .date-and-title .date {
+    font-size: 0.8rem;
+}
+
+#profile-page #profile .part .history-tests .history-test .date-and-title .test-title {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
 #profile-page #profile .part .history-tests a.history-test .date-and-title {
     padding: 20px 20px 0px 30px;
     color: var(--primary-base);
@@ -1474,6 +1501,17 @@ main.background-auth .auth-form .other-links {
     text-transform: uppercase;
     text-decoration: none;
     text-align: center;
+}
+
+a.primary {
+    background-color: var(--primary-base);
+    color: var(--pure-white);
+    border-radius: 10px;
+    border: none;
+    text-decoration: none;
+    text-align: center;
+    padding: 10px 20px;
+    font-family: "Oxygen", sans-serif;
 }
 
 .the-modal form .all-button button.save,

@@ -17,18 +17,18 @@
     <!-- Bootstrap Icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="./assets/css/color.css">
-    <link rel="stylesheet" href="./assets/css/style.css">
-    <link rel="stylesheet" href="./assets/css/stars.css">
-    <link rel="stylesheet" href="./assets/css/stars2.css">
-    <link rel="stylesheet" href="./assets/css/stars3.css">
+    <link rel="stylesheet" href="/assets/css/color.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/stars.css">
+    <link rel="stylesheet" href="/assets/css/stars2.css">
+    <link rel="stylesheet" href="/assets/css/stars3.css">
 </head>
 
 <body class="main-page">
     <main id="breathing-session-page">
         <section id="breathing-session">
-            <h3>Kesadaran Tubuh</h3>
-            <p>Merasakan napas dari kepala sampai ujung kaki bawah</p>
+            <h3>{{ $step->step_name }}</h3>
+            <p>{{ $step->step_description }}</p>
             <div class="timer">
                 <div class="circles">
                     <p class="time-left">Start</p>
@@ -81,8 +81,8 @@
                 </div>
             </div>
 
-            <audio src="./assets/audio/brownNoise.MP3" id="sfx-audio" loop="true"></audio>
-            <audio src="./assets/audio/doneBell.mp3" id="done-audio"></audio>
+            <audio src="/assets/audio/brownNoise.MP3" id="sfx-audio" loop="true"></audio>
+            <audio src="/assets/audio/doneBell.mp3" id="done-audio"></audio>
         </section>
 
     </main>
@@ -117,7 +117,7 @@
             <form action="post">
                 <div class="all-button">
                     <button type="button" class="primary" onclick="instructionsModalToggleOff()">Oke, Mulai Sesi!</button>
-                    <a href="{{ route('mindfulness') }}" class="secondary">Hmm.. aku belum siap</a>
+                    <a href="{{ route('home.technique') }}" class="secondary">Hmm.. aku belum siap</a>
                 </div>
             </form>
         </div>
@@ -131,34 +131,23 @@
                     Yuk isi pertanyaan dibawah ini!
                 </p>
             </div>
-            <form action="post">
+            <form action="{{ route('breathsession.submit') }}" method="post" onsubmit="return validateForm()">
+                @csrf
                 <div class="form-field">
-                    <div class="field">
-                        <label for="name" class="ask-user">Bagaimana perasaanmu saat ini?</label>
-                        <input type="text" name="name" id="name" placeholder="Contoh: Lebih lega ">
-                    </div>
+                    @foreach ($step['stepquestion'] as $step1)
+                        <div class="field">
+                            <label for="name" class="ask-user">{{ $step1->step_question }}</label>
+                            <input type="hidden" name="stepquestion[{{ $loop->iteration }}]" value="{{ $step1->id }}">
+                            <input type="text" id="name" placeholder="{{ $step1->placeholder }}"  name="userAnswer[{{ $loop->iteration - 1 }}]" required>
+                        </div>
+                    @endforeach
                 </div>
                 <div class="all-button">
                     <button
                     type="submit"
-                    class="primary"
-                    onclick="postDoneSessionModalToggleOff();veryEndOfSessionModalToggleOn();">
+                    class="primary">
                         Submit
                     </button>
-                </div>
-            </form>
-        </div>
-
-        <div class="the-modal the-very-end-of-session-modal">
-            <div class="title">
-                <h6>Kamu hebat!</h6>
-                <p>
-                    Hari ini sudah cukup, jangan lupa untuk melakukan sesi ini besok!
-                </p>
-            </div>
-            <form action="post">
-                <div class="all-button">
-                    <a href="{{ route('home') }}" class="primary">Kembali ke Beranda</a>
                 </div>
             </form>
         </div>
@@ -171,7 +160,7 @@
             <form action="post">
                 <div class="all-button">
                     <button type="button" class="primary" onclick="endSessionModalToggleOff()">Batalkan</button>
-                    <a href="{{ route('mindfulness') }}" class="secondary">Ya, akhiri sesi ini</a>
+                    <a href="{{ route('home.technique') }}" class="secondary">Ya, akhiri sesi ini</a>
                 </div>
             </form>
         </div>
@@ -179,9 +168,31 @@
 
 
 
+    <script>
+        function validateForm() {
+            var isValid = true;
+            document.querySelectorAll('.field input[type="text"]').forEach(function(input) {
+                if (input.value.trim() === '') {
+                    isValid = false;
+                    // You can also display a custom error message here
+                }
+            });
 
-    <script src="./assets/js/timer.js"></script>
-    <script src="./assets/js/script.js"></script>
+            if (!isValid) {
+                alert('Please fill out all the fields.');
+                return false;
+            }
+
+            // Additional actions before form submit
+            postDoneSessionModalToggleOff();
+            veryEndOfSessionModalToggleOn();
+
+            return true;
+        }
+        </script>
+
+    <script src="/assets/js/timer.js"></script>
+    <script src="/assets/js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 </body>

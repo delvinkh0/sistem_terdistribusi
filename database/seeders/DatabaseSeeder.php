@@ -25,6 +25,8 @@ class DatabaseSeeder extends Seeder
             OptionsQuestionsSeeder::class,
             TestCategorySeeder::class,
             TestResultsSeeder::class,
+            StepSeeder::class,
+            StepQuestionSeeder::class,
         ]);
     }
 }

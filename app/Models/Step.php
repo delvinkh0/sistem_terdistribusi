@@ -17,6 +17,6 @@ class Step extends Model
     ];
     public function stepquestion()
     {
-        return $this->belongsTo(StepQuestion::class, 'step_id');
+        return $this->hasMany(StepQuestion::class, 'step_id');
     }
 }

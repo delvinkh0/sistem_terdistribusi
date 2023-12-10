@@ -161,20 +161,6 @@ function postDoneSessionModalToggleOff() {
     editModal.style.display = "none";
 }
 
-function veryEndOfSessionModalToggleOn() {
-    const modalScreen = document.querySelector("#modal-screen");
-    const editModal = document.querySelector("#modal-screen .the-modal.the-very-end-of-session-modal");
-    modalScreen.style.display = "flex";
-    editModal.style.display = "flex";
-}
-
-function veryEndOfSessionModalToggleOff() {
-    const modalScreen = document.querySelector("#modal-screen");
-    const editModal = document.querySelector("#modal-screen .the-modal.the-very-end-of-session-modal");
-    modalScreen.style.display = "none";
-    editModal.style.display = "none";
-}
-
 instructionsModalToggleOn();
 
 

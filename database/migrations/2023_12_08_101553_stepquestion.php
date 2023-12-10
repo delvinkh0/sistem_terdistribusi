@@ -15,6 +15,7 @@ return new class extends Migration
         Schema::create('step_question', function (Blueprint $table) {
             $table->id();
             $table->string('step_question');
+            $table->string('placeholder');
             $table->unsignedBigInteger('step_id');
 
             $table->foreign('step_id')->references('id')->on('step');

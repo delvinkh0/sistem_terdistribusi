@@ -1,11 +1,12 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\TestController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\BreathSessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,7 +47,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/self-assessment', [HomeController::class, 'selfAssessment'])->name('home.self-assessment');
 Route::get('/technique', [HomeController::class, 'technique'])->name('home.technique');
-Route::get('/breathing-phase', [HomeController::class, 'breathingPhase'])->name('home.breathing-phase');
 
 // Auth route with middleware
 Route::group(['middleware' => 'guest'], function () {
@@ -72,4 +72,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/test/submit', [TestController::class, 'submit'])->name('test.submit');
     Route::get('/test/result', [TestController::class, 'showResult'])->name('test.result');
 
+    Route::get('/breathing-phase/{id}', [BreathSessionController::class, 'index'])->name('breathsession.index');
+    Route::post('/breathing-phase/submit', [BreathSessionController::class, 'submit'])->name('breathsession.submit');
 });
