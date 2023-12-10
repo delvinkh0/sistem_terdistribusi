@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('testresults', function (Blueprint $table) {
             $table->id();
             $table->string('result_name');
-            $table->string('result_description');
-            $table->string('result_solution');
+            $table->text('result_description');
+            $table->text('result_solution');
             $table->integer('first_limit');
             $table->integer('end_limit');
             $table->integer('max_score');

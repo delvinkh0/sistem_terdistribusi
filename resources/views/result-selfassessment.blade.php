@@ -36,8 +36,8 @@
     <section id="test-results" class="container">
         <div class="result-top">
             <div class="results-title-and-desc">
+                <p>Berdasarkan jawaban yang telah diberikan, kamu mendapatkan hasil...</p>
                 <h4>{{$result->result_name}}</h4>
-                <p>Lorem ipsum dolor sit amet, ipsum dolor sit amet</p>
             </div>
             <div class="progress-bar">
                 <div class="indicator-value">

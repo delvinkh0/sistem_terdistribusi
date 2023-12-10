@@ -1093,6 +1093,12 @@ main.background-auth .auth-form .other-links {
     font-weight: 600;
 }
 
+#all-questions-and-instructions form.questions .question-and-answer .radio-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
 #all-questions-and-instructions form.questions .question-and-answer .radio-buttons .radio-button input{
     visibility: hidden;
     animation: all 0.3s;
@@ -1103,6 +1109,7 @@ main.background-auth .auth-form .other-links {
     border-radius: 16px;
     background-color: var(--tertiary-passive);
     font-weight: 500;
+    font-size: 0.8rem;
 }
 
 #all-questions-and-instructions form.questions .question-and-answer .radio-buttons .radio-button input:checked + span{
@@ -1291,8 +1298,8 @@ main.background-auth .auth-form .other-links {
 #profile-page #profile .part .history-tests {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 1rem;
+    justify-content: space-evenly;
+    gap: 2rem;
 }
 
 #profile-page #profile .part .history-tests a.history-test{

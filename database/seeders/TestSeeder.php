@@ -38,8 +38,8 @@ class TestSeeder extends Seeder
                 'test_description' => 'Tes ini mengukur kecemasan terkait penampilan fisik dan citra tubuh..',
             ],
             [
-                'test_name' => 'Short Health Anxiety Inventory (SHAI)',
-                'test_description' => 'Tes ini mengukur kecemasan terkait kesehatan, membantu individu menilai kecenderungan untuk merasa cemas tentang kondisi kesehatan.',
+                'test_name' => 'Short Health Anxiety Inventory 14 (SHAI-14)',
+                'test_description' => 'Tes yang berisi 14 pertanyaan ini mengukur kecemasan terkait kesehatan, membantu individu menilai kecenderungan untuk merasa cemas tentang kondisi kesehatan. ',
             ],
             [
                 'test_name' => 'Social Avoidance and Distress Scale (SADS)',

@@ -40,6 +40,7 @@
             <div class="content">
                 <h6 class="title">{{ $test->test_name }}</h6>
                 <div class="categories">
+                @php $isUnderDevelopment = false; @endphp
                 @foreach ($test['category'] as $cat)
                     @if ($cat->category_name == 'Depresi')
                         <small class="category depression">{{ $cat->category_name }}</small>
@@ -47,6 +48,9 @@
                         <small class="category anxiety">{{ $cat->category_name }}</small>
                     @elseif ($cat->category_name == 'Stress')
                         <small class="category stress">{{ $cat->category_name }}</small>
+                    @elseif ($cat->category_name == 'Under Development')
+                        <small class="category" style="background-color: var(--tertiary-base); color: var(--pure-black); display: none">{{ $cat->category_name }}</small>
+                        @php $isUnderDevelopment = true; @endphp
                     @else
                         <small class="category anxiety">{{ $cat->category_name }}</small>
                     @endif
@@ -55,9 +59,13 @@
                 <div class="desc">
                     <p>{{ $test->test_description }}</p>
                 </div>
-                <div class="start-test-button">
-                    <a href="{{ route('test.show', $test->id) }}" class="start-test">Mulai Tes <i class="bi bi-arrow-right-short"></i></a>
-                </div>
+                @if (!$isUnderDevelopment)
+                    <div class="start-test-button">
+                        <a href="{{ route('test.show', $test->id) }}" class="start-test">Mulai Tes <i class="bi bi-arrow-right-short"></i></a>
+                    </div>
+                @else
+                    <p class="alert alert-danger" style="padding: 5px; font-size: 0.7rem; text-align: center">Tes dalam tahap pengembangan</p>
+                @endif
             </div>
 
             <svg width="370" height="138" viewBox="0 0 370 138" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -66,8 +66,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::post('/profile/change-password', [ProfileController::class, 'changePassword'])->name('profile.change-password.action');
+    Route::get('profile/history/test-result/{datenow}', [ProfileController::class, 'historyDetail'])->name('profile.history.detail');
 
     Route::get('/test/show/{id}', [TestController::class, 'show'])->name('test.show');
     Route::post('/test/submit', [TestController::class, 'submit'])->name('test.submit');
     Route::get('/test/result', [TestController::class, 'showResult'])->name('test.result');
+
 });

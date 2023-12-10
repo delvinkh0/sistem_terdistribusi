@@ -14,6 +14,11 @@ class ProfileController extends Controller
     public function index()
     {
         $data['user'] = auth()->user();
+        $data['results'] = DB::table('result_view')
+            ->where('user_id', auth()->user()->id)
+            ->orderBy('datenow', 'desc')
+            ->get();
+
         return view('profile', $data);
     }
 
@@ -99,9 +104,8 @@ class ProfileController extends Controller
         return view('history', $data);
     }
 
-    public function historyDetail(Request $request)
+    public function historyDetail($dateNow, Request $request)
     {
-        $dateNow = $request->input('date_now');
         if ($dateNow == null) {
             return redirect()->back();
         }
@@ -111,6 +115,6 @@ class ProfileController extends Controller
             ->orderBy('datenow', 'desc')
             ->first();
 
-        return view('history-detail', $data);
+        return view('result-selfassessment', $data);
     }
 }

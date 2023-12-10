@@ -174,22 +174,6 @@ class QuestionsSeeder extends Seeder
                 'question_name' => 'Keluarga atau teman-teman saya mungkin mengatakan bahwa saya',
             ],
             [
-                'test_id' => 7,
-                'question_name' => 'Jika saya memiliki penyakit serius, saya masih dapat menikmati banyak hal dalam hidup saya',
-            ],
-            [
-                'test_id' => 7,
-                'question_name' => 'Jika saya mengembangkan penyakit serius, saya pikir kemungkinan bahwa obat modern akan dapat menyembuhkan saya adalah',
-            ],
-            [
-                'test_id' => 7,
-                'question_name' => 'Penyakit serius akan merusak hidup saya dalam',
-            ],
-            [
-                'test_id' => 7,
-                'question_name' => 'Jika saya memiliki penyakit serius, saya akan merasa bahwa saya',
-            ],
-            [
                 'test_id' => 8,
                 'question_name' => 'Saya merasa rileks bahkan dalam situasi sosial yang tidak biasa.',
             ],

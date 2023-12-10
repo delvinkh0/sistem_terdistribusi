@@ -29,9 +29,11 @@
                 <div class="desc">
                     <p>{{ $test->test_description }}</p>
                 </div>
+                @if(count($test['questions']) > 0)
                 <div class="start-test-button">
                     <a href="#all-questions-and-instructions" class="start-test">Mulai Tes <i class="bi bi-arrow-right-short"></i></a>
                 </div>
+                @endif
             </div>
         </div>
 
@@ -60,11 +62,14 @@
         @if (session('error'))
             <p class="alert alert-danger">{{ session('error') }}</p>
         @endif
+
+        @if(count($test['questions']) > 0)
         <div class="instructions">
             <p class="title">Instruksi:</p>
             <p>Harap baca setiap pernyataan dan pilih dari "Tidak sama sekali" hingga "Hampir setiap hari" untuk
                 menunjukkan sejauh mana pernyataan tersebut berlaku untuk Anda selama dua minggu terakhir.</p>
         </div>
+
 
         <form class="questions" action="{{ route('test.submit') }}" method="POST">
             @csrf
@@ -92,6 +97,9 @@
             <button type="submit">Submit</button>
 
         </form>
+        @else
+            <p class="alert alert-danger">Tes ini masih dalam tahap pengembangan, Silahkan coba fitur kami yang lain, terima kasih :D</p>
+        @endif
 
 
     </section>

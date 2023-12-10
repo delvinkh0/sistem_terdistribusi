@@ -31,7 +31,10 @@ class CategorySeeder extends Seeder
             [
                 'category_name' => 'Kecemasan Sosial',
             ],
+            [
+                'category_name' => 'Under Development',
+            ],
         ];
-        Category::insert($data); 
+        Category::insert($data);
     }
 }
