@@ -58,7 +58,7 @@ const startEl = document.querySelector(".timer-control .play")
 const timeLeftEl = document.querySelector("p.time-left");
 
 let interval;
-let timeLeft = 300;
+let timeLeft = 10;
 
 function updateTimer() {
     let minutes = Math.floor(timeLeft / 60);

@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\Step;
 use Illuminate\Http\Request;
+use App\Models\StepTestTaken;
 use App\Models\UserStepAnswer;
+use App\Http\Controllers\Controller;
 
 class BreathSessionController extends Controller
 {
@@ -23,7 +25,8 @@ class BreathSessionController extends Controller
             'stepquestion.*' => 'required|exists:step_question,id',
             'userAnswer.*' => 'required|string',
             'stepquestion' => 'required|array|min:1',
-            'userAnswer' => 'required|array|min:1'
+            'userAnswer' => 'required|array|min:1',
+            'step_id' => 'required'
         ]);
 
         $stepQuestionsCount = count($request->input('stepquestion', []));
@@ -45,6 +48,16 @@ class BreathSessionController extends Controller
 
             $userStepAnswer->save();
         }
+
+        $stepTestTaken = StepTestTaken::create([
+            'user_id' => auth()->user()->id,
+            'step_id' => $request->input('step_id'),
+            'datenow' => Carbon::createFromFormat('Y-m-d H:i:s', now())
+        ]);
+
+        dd($stepTestTaken);
+
+        $stepTestTaken->save();
 
         return redirect()->route('home.technique')->with('success', 'Satu sesi pernapasan selesai, Hari ini sudah cukup, jangan lupa untuk melakukan sesi ini besok!');
     }
